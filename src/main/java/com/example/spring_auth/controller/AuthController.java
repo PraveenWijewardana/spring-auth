@@ -16,8 +16,21 @@ public class AuthController {
     }
 
     @GetMapping("/customer")
+    @PreAuthorize("hasRole('CUSTOMER')")
     public String cust() {
         return "Hello customer";
+    }
+
+    @GetMapping("/SuperAdmin")
+    @PreAuthorize("hasRole('SUPER_ADMIN')")
+    public String superAdmin() {
+        return "Hello superAdmin";
+    }
+
+    @GetMapping("/guest")
+    @PreAuthorize("hasRole('GUEST')")
+    public String guest() {
+        return "Hello guest";
     }
 
 
