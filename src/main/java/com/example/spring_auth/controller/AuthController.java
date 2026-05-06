@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     @GetMapping("/admin")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('SUPER_ADMIN')")
     public String admin() {
         return "Hello admin";
     }
 
     @GetMapping("/customer")
-    @PreAuthorize("hasRole('CUSTOMER')")
+    @PreAuthorize("hasRole('CUSTOMER') or hasRole('ADMIN') or hasRole('SUPER_ADMIN')")
     public String cust() {
         return "Hello customer";
     }
@@ -28,7 +28,6 @@ public class AuthController {
     }
 
     @GetMapping("/guest")
-    @PreAuthorize("hasRole('GUEST')")
     public String guest() {
         return "Hello guest";
     }
